@@ -89,20 +89,20 @@
             <div class="col-md-4 p-1 border border-secondary">
                 <!--  fonctiond date() pour donne la date -->
                 <?php echo date('d/m/Y - H:m:s'); ?>
-                <?php echo "<h5> date de jour : " . date('d/m/Y') . "</h5>"; 
-                 echo "<p> bienvenue sur le cours PHP </p>";
+                <?php echo "<h5> date de jour : " . date('d/m/Y') . "</h5>";
+                echo "<p> bienvenue sur le cours PHP </p>";
                 ?>
             </div>
             <!-- fin col -->
             <div class="col-md-4 p-1 border border-secondary">
-                <h4>le cycle de vie  d'une page PHP</h4>
+                <h4>le cycle de vie d'une page PHP</h4>
                 <ol>
-                    <li> envoie d'une HTTp (hyper text transfer Protocol) par le navigateur vers serveur du type 
+                    <li> envoie d'une HTTp (hyper text transfer Protocol) par le navigateur vers serveur du type
                         http://www.monsite.fr/infos?php</li>
-                    <li>nterprétation par le serveur du code PHP  contenu dans la page applée</li>
+                    <li>nterprétation par le serveur du code PHP contenu dans la page applée</li>
                     <li>envoie par le serveur d'une fichier dont le contenu est purement html</li>
-                    <p>  <a href="../00-pages/01_page.php" target="_blanck"> ice un lien vers une autre page PHP</a></p>
-                    
+                    <p> <a href="../00-pages/01_page.php" target="_blanck"> ice un lien vers une autre page PHP</a></p>
+
                 </ol>
 
             </div>
@@ -112,45 +112,49 @@
         <section class="row">
             <div class="col-md-10">
                 <h3>Inclure des fichiers externes en PHP</h3>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Fonction</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>include("mon_fichier.php")</code> </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <code> require("mon_fichier.php") </code> </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <code> include_once("mon_fichier.php") </code> 
-                            <br> 
-                            <code> require_once("mon_fichier.php") </code>  </td>
-                            <td></td>
-                        </tr>
-                    </tbody>
+                <section class="row m-2 p-2">
+                    <div class="col-md-12">
+                        <h3>Inclure des fichiers externe en PHP</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fonction</th>
+                                    <th>Description</th>
 
-                </table>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td><code>include("../inc/init.inc.php")</code></td>
+                                    <td>Lors de son interpretation par le serveur, cette ligne est remplacée par tout le contenu du fichier précisé en paramètres, il faut fournir le nom et l'adresse complète; en cas d'erreur, par ex: si le fichier n'est pas trouvé , la fonction include ne genère qu'une alerte (un warning) est le script continue </td>
+                                </tr>
+                                <tr>
+                                    <td><code>require("../inc/init.inc.php")</code></td>
+                                    <td>A desormais un comportement identique à include(), à la différence près qu'en cas d'erreur, require() provoque une erreur "fatale" (fatal error) et met fin au script</td>
+                                </tr>
+                                <tr>
+                                    <td><code>include_once("../inc/init.inc.php")<br> require_once("../inc/init.inc.php")</code></td>
+                                    <td>Ces fonctions ne sont pas éxécutés plusieurs fois,même si on les trouve dans une boucle ou si elles ont été exécutées une fois dans le code qui précède.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                </section>
+
             </div>
+            <!-- fin container -->
 
-        </section>
+            <!-- Optional JavaScript; choose one of the two! -->
 
-    </div>
-    <!-- fin container -->
+            <!-- Option 1: Bootstrap Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+            <!-- Option 2: Separate Popper and Bootstrap JS -->
+            <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
