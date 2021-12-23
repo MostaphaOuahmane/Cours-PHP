@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>CoursPHP - 02 tableaux</title>
+    <title>CoursPHP - Chapitre - 02 tableaux</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,13 +21,13 @@
 
   </head>
   <body>
-    <header class="container-fluid bg-light">
-      <h1 class="display-4 text-center">CoursPHP - 04 tableaux</h1>
+    <header class="container-fluid f-header p-2">
+      <h1 class="display-4 text-center">CoursPHP - Chapitre - 04 tableaux</h1>
       <p class="lead">Les tableaux représentent un type composé car ils permettent de stocker sous un même nom de variable plusieurs valeurs indépendantes. C’est comme un tiroir divisé en compartiments. Chaque compartiment, que nous nommerons un élément du tableau, est repéré par un indice numérique (le premier ayant par défaut la valeur 0 et non 1). D’où l’expression de "tableau indicé".</p>
     </header> 
     <!-- fin container-fluid header  -->
 
-    <div class="container bg-white">
+    <div class="container bg-white mt-2 mb-2 m-auto p-2">
 
       <section class="row">
 
@@ -116,7 +116,7 @@
               'tel' => '06 63 74 11 35',
               );
 
-            echo "<div class=\"border border-warning bg-light w-50\">";
+            echo "<div class=\" bg-light w-50\">";
              foreach ($contacts as $indice => $personne) {
               // echo "<p>$indice : $infos </p>";
               if ($indice == 'nom') {
@@ -134,11 +134,46 @@
 
       <section class="row">
         <div class="col-md-6">
-          <h2>4- Tableaux multidimensionnels</h2>
+          <h2>4- Tableaux associatif dans un &lt;select></h2>
+          <p>Pour mettre le tableau associatif dans un select, avec une boucle foreach qui fabrique les <code>&lt;option value=""></code> de la balise select 
+            <code><br>
+            echo "&lt;label for=\"size2\">Tailles</label>&lt;select class=\"form-control w-25\">";<br>
+          foreach( $tailles2 as $indice2 => $size2 ) {<br>
+            echo "&lt;option value=\"$indice2\"> $size2 &lt;/option>";<br>
+          }
+          echo "&lt;/select>";
+            </code>
+          </p>
         </div>
       <!-- fin col -->
         <div class="col-md-6">
-          <h2>TitreNiveau2</h2>
+          <h2>Exemple</h2>
+          <?php 
+           $tailles2 = [
+            "xs" => "XS-extra-small",
+            "s" => "S-small",
+            "m" => "M-medium",
+            "l" => "L-large",
+            "xl" => "XL-extra-large"
+          ];
+
+          echo "<hr><pre class=\"bg-warning\">1/ BOUCLE FOREACH LES TAILLES TABLEAU 2</pre>";
+          echo "<ul>";
+            foreach( $tailles2 as $indice2 => $size2 ) {
+              echo "<li> $indice2 pour $size2 </li>";
+            }
+          echo "</ul>";
+
+          // EXO suite cette fois-ci mettez les valeurs du tableau dans un select de formulaire (on n'a pas besoin de la balise form pour l'exo)
+          echo "<hr><pre class=\"bg-warning\">1/ BOUCLE FOREACH LES TAILLES TABLEAU 2 DANS UN SELECT</pre>";
+          
+          echo "<label for=\"size2\">Tailles</label><select class=\"form-control w-25\">";
+          foreach( $tailles2 as $indice2 => $size2 ) {
+            echo "<option value=\"$indice2\"> $size2 </option>";
+          }
+          echo "</select>";
+
+        ?> 
         </div>
       <!-- fin col -->
       </section>

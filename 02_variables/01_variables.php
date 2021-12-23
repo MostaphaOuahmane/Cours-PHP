@@ -11,320 +11,299 @@ require_once '../inc/functions.php'; // APPEL DES FONCTIONS
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>CoursPHP - 02 Types de données</title>
+    <title>CoursPHP - Chapitre - Suresnes 2021/2022 - 01 Variables</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
     <!-- mes styles -->
     <link rel="stylesheet" href="../css/style.css">
-
+    
   </head>
   <body>
-    <header class="container-fluid bg-light">
-      <h1 class="display-4">CoursPHP - 02 Types de données</h1>
-      <p class="lead">Les types de données</p>
+    <header class="container-fluid f-header p-2">
+      <h1 class="display-4 text-center">CoursPHP - Chapitre 02 - 01 Variables</h1>
+      <p class="lead">Les variables en PHP</p>
       <?php 
+      echo "<p>Nom du fichier inclus : ".__FILE__ ."</p>"; 
+      dateFR();
       minutePap();
-      ?> 
+      ?>
     </header> 
-    <!-- fin container-fluid header  -->
+    <!-- fin container-fluid  -->
 
-    <div class="container bg-white">
-
-      <section class="row">
-
-        <div class="col-sm-12 col-md-6">
-          <h2>Les types de données</h2>
-          <ul>
-                    <li>Les types de base :</li>
+    <div class="container bg-white mt-2 mb-2 m-auto p-2">
+        <section class="row">
+            <div class="col-sm-12 col-md-4">
+                        <h2>Les variables </h2>
+                        <p>Chaque variable possède un identifiant particulier, qui commence toujours par le caractère dollar ($) suivi du nom de la variable. Les règles de création des noms de variable sont les suivantes :</p>
                         <ul>
-                            <li>Entiers, avec le type integer, qui permet de représenter les nombres entiers dans les bases 10, 8 et 16.</li>
-                            <li>Flottants, avec le type double ou float, au choix, qui représentent les nombres réels, ou plutôt décimaux au sens mathématique. </li>
-                            <li>Chaînes de caractères, avec le type string.</li>
-                            <li>Booléens, avec le type boolean, qui contient les valeurs de vérité TRUE ou FALSE (soit les valeurs 1 ou 0 si on veut les afficher).</li>
+                            <li>Le nom commence par un caractère alphabétique, pris dans les ensembles [a-z], [A-Z] ou par le tiret bas (_).</li>
+                            <li>Les caractères suivants peuvent être les mêmes plus des chiffres.</li>
+                            <li>La longueur du nom n’est pas limitée, mais il convient d’être raisonnable sous peine de confusion dans la saisie du code. Il est conseillé de créer des noms de variable le plus « parlant » possible. En relisant le code contenant la variable $nomclient, par exemple, vous comprenez davantage ce que vous manipulez que si vous aviez écrit $x ou $y.</li>  
                         </ul>
-                    <li>Les types composés :</li> 
+            </div>
+            <!-- fin col -->
+
+            <div class="col-sm-12 col-md-4">
+                <h3>Déclaration des variables</h3>
+                <ul>
+                    <li>La déclaration des variables n'est pas obligatoire en début de script, c'est un différence avec JS ou C. On peut créer des variables n'importe où mais avant de les utiliser. Toutefois utiliser une variable non créée ne provoquera pas d'erreur.</li>
+                    <li>Il n'est pas necessaire d'initialiser une variable et une variable n'aura pas de type.</li>
+                    <li>Les noms de variables sont sensibles à la casse (maj et min) ; $mavar est différent de $maVar</li>
+                </ul>
+            </div>
+            <!-- fin col -->
+
+            <div class="col-sm-12 col-md-4">
+                <h3>Noms de variables</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Noms de variables autorisés</h5>
                         <ul>
-                            <li>Tableaux, avec le type array, qui peut contenir plusieurs valeurs.</li>
-                            <li>Objets, avec le type object.</li>
+                            <li>$mavar</li>
+                            <li>$_mavar</li>
+                            <li>$M1</li>
+                            <li>$_12345</li>
                         </ul>
-                        <li>Les types spéciaux</li>
+                    </div>
+                    <div class="col-md-6 alert alert-danger">
+                        <h5>Noms de variables interdits</h5>
+                            <ul>
+                                <li>$*mavar</li>
+                                <li>$5mavar</li>
+                                <li>$mavar2+</li>
+                            </ul>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- fin col -->
+        </section>
+        <!-- fin row -->
+
+        <section class="row">
+            <div class="col-sm-12">
+                <h3>Affectation de variables par valeur et par référence</h3>
+                <p>Affecter c'est donner une valeur à une variable. A sa création vous ne donnez pas son type à une variable, c'est la valeur que vous lui affectez qui détermine ce type. </p>
+                <h5>Exemples :</h5>
+                <ul>
+                    <li><code>$mavar = 75;</code></li>
+                    <li><code>$mavar = "Paris"; </code> ou <code>$mavar = 'Paris'; </code></li>
+                    <li><code>$mavar=7*3+2/5-91%7;</code> : PHP évalue l'expression puis affecte le résultat </li>
+                    <li><code>$mavar=mysql_connect($a,$b,$c);</code> : la fonction retourne une ressource </li>
+                    <li><code>$mavar=isset($var&&($var==9)); </code> : la fonction retourne une valeur booléenne, TRUE ou FALSE</li>
+                </ul>
+            </div>
+            <!-- fin col -->
+        </section>
+        <!-- fin row -->
+
+        <section class="row">
+            <div class="col-sm-12">
+                <h2>Les variables prédéfinies</h2>
+                <p>PHP dispose d’un grand nombre de variables prédéfinies, qui contiennent des informations à la fois sur le serveur et sur toutes les données qui peuvent transiter entre le poste client et le serveur, comme les valeurs saisies dans un formulaire, les cookies ou les sessions.</p>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="row">Variable</th>
+                            <th scope="row">Utilisation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <th scope="row"><code>$GLOBALS</code></th>
+                            <td>Contient le nom et la valeur de toutes les variables globales du script. Les noms des variables sont les clés de ce tableau. <code>$GLOBALS["mavar"]</code> récupère la valeur de la variable $mavar en dehors de sa zone de visibilité (dans les fonctions, par exemple).</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>$_COOKIE</code></th>
+                            <td>Contient le nom et la valeur des cookies enregistrés sur le poste client dans un tableau (array). Les noms des cookies sont les clés de ce tableau.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>$_ENV</code></th>
+                            <td>Contient le nom et la valeur des variables d’environnement qui sont changeantes selon les serveurs.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>$_FILES</code></th>
+                            <td>Contient le nom des fichiers téléchargés à partir du poste client.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>$_GET</code></th>
+                            <td>Contient le nom et la valeur des données issues d’un formulaire envoyé par la méthode GET. Les noms "mame", des champs du formulaire sont les clés de cet array.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>$_POST</code></th>
+                            <td>Contient le nom et la valeur des données issues d’un formulaire envoyé par la méthode POST. Les noms des champs du formulaire sont les clés de cet array.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>$_REQUEST</code></th>
+                            <td>Contient l'ensemble des variables superglobales $_GET, $_POST, $_COOKIE et $_FILES
+                            <br>Une variable superglobale signifie que cette variable est disponible partout dans le script, y compris au sein des fonctions !
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>$_SERVER</code></th>
+                            <td>Contient les informations liées au serveur web, tel le contenu des en-têtes HTTP ou le nom du script en cours d’exécution. Retenons les variables suivantes :
                         <ul>
-                            <li>Objets, avec le type object.</li>
-                            <li>Type null.</li>
+                            <li><code>$_SERVER["HTTP_ACCEPT_LANGUAGE"]</code> : contient le code de la langue du navigateur client ex. <?php echo $_SERVER["HTTP_ACCEPT_LANGUAGE"]; ?></li>
+                            <li><code>$_SERVER["HTTP_COOKIE"]</code> : contient le nom et la valeur des cookies ex. <?php echo $_SERVER["HTTP_COOKIE"]; ?></li>
+                            <li><code>$_SERVER["HTTP_HOST"]</code> : donne le nom de domaine ex. <?php echo $_SERVER["HTTP_HOST"]; ?></li>
+                            <li><code>$_SERVER["SERVER_ADDR"]</code> : donne l'adresse IP du serveur ex. <?php echo $_SERVER["SERVER_ADDR"]; ?></li>
+                            <li><code>$_SERVER["PHP_SELF"]</code> : contient le nom du script en cours, nous l'utiliserons dans les formulaires</li>
+                            <li><code>$_SERVER["QUERY_STRING"]</code> : contient la chaîne de la requête utilisée pour accéder au script</li>
                         </ul>
-					</ul>
-        </div>
-        <!-- fin col -->
-
-        <div class="col-sm-12 col-md-6">
-          <h2>Les opérateurs numériques</h2>
-          <p>PHP offre un large éventail d’opérateurs utilisables avec des nombres. Les variables ou les nombres sur lesquels agissent ces opérateurs sont appelés les opérandes.</p>
-
-          <table class="table table-striped">
-            <thead>
-                <tr>
-                <th scope="col">Opérateur</th>
-                <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">+</th>
-                    <td>Addition</td>
-                </tr>
-                <tr>
-                    <th scope="row">-</th>
-                    <td>Soustraction</td>
-                </tr>
-                <tr>
-                    <th scope="row">*</th>
-                    <td>Multiplication</td>
-                </tr>
-                <tr>
-                    <th scope="row">**</th>
-                    <td>Puissance (associatif à droite)<br>
-                    $a=3;<br>
-                    echo $a**2; //Affiche 9<br>
-                    echo $a**2**4; //Affiche 43046721 soit 3**(2**4) ou 316</td>
-                </tr>
-                <tr>
-                    <th scope="row">/</th>
-                    <td>Division</td>
-                </tr>
-
-                <tr>
-                    <th scope="row">%</th>
-                    <td>Modulo : nous donne le reste de la division euclidienne<br>
-                        <?php 
-                            $var = 159;
-                            echo "<pre>" .gettype($var). "</pre>";
-                            // pour afficher le symbole $ il faut l'échapper
-                            echo "<div class=\"alert alert-success\">Le contenu de <code>\$var</code> est $var<br>";
-                            //pour faire une opération avec une variable 
-                            echo "Le modulo de $var / 7 ou  <code>\$var%7</code> est égal à " .$var%7;
-                            echo "</div>";
-                        ?>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">--</th>
-                    <td>Décrémentation : soustrait une unité à la variable. Il existe deux possibilités, la prédécrémentation, qui soustrait avant d’utiliser la variable, et la postdécrémentation, qui soustrait après avoir utilisé la variable.<br>
-                    <code>
-                    $var=56;<br>
-                    echo $var--; //affiche 56 puis décrémente $var.<br>
-                    echo $var; //affiche 55.<br>
-                    echo --$var; //décrémente $var puis affiche 54.
-                    </code>
-                    </td>
-                </tr>
-
-                <tr>
-                <th scope="row">++</th>
-                    <td>
-                        Incrémentation : ajoute une unité à la variable. Il existe deux possibilités, la préincrémentation, qui ajoute 1 avant d’utiliser la variable, et la postincrémentation, qui ajoute 1 après avoir utilisé la variable.
-                        <code>$var=56;<br>
-                        echo $var++; //affiche 56 puis incrémente $var : postincrémenté<br>
-                        echo $var; //affiche 57.<br>
-                        echo ++$var; //incrémente $var puis affiche 58 : préincrémenté
-                        </code>
-                        <br>
-                        <?php 
-                            $var = 56;
-                            echo "<div class=\"alert alert-danger\">";
-                            echo "exemple : " .$var++. " devient après incrémentation $var";
-                            echo "</div>";
-
-                            echo "<div class=\"alert alert-warning\">";
-                            echo "exemple : " .++$var. " \$var est incrémenté avant avec ++\$var";
-                            echo "</div>";
-                        ?>
-                    </td>
-                 </tr>
-
-            </tbody>
-          </table>
-        </div>
-        <!-- fin col -->
-
-      </section>
-      <!-- fin row -->
-
-      <section class="row">
-
-        <div class="col-md-12">
-            <h2>Le type "boolean" ou booléen</h2>
-            <p>Le type booléen peut contenir deux valeurs TRUE ou 1 ou FALSE ou 0 </p>
-            <?php
-               $a = 100;
-               $b = ($a < 150);
-               // dans le cas où c'est FALSE il affichera une chaîne vide
-            //    echo $b;
-               echo "<div class=\"alert alert-primary\">si je ne vois pas le contenu de \$b =  >>>>  $b <<<<< c'est que c'est faux, si je le vois c'est vrai</div>";
-            ?>
-
-                <h3>Les opérateurs booléens</h3>
-                    <p>Quand ils sont associés, les opérateurs booléens servent à écrire des expressions simples ou complexes, qui sont évaluées par une valeur booléenne TRUE ou FALSE. Ils seront utilisés dans les instructions conditionnelles.</p>
-
-                    <table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col">Opérateur</th>
-							<th scope="col">Description</th>
-						</tr>
-					</thead>
-
-					<tbody>
-					<tr>
-						<th scope="row">==</th>
-						<td>
-						Teste l’égalité de deux valeurs. L’expression $a == $b vaut TRUE si la valeur de $a est égale à celle de $b et
-						FALSE dans le cas contraire :<br>
-						$a = 345;<br>
-						$b = "345";<br>
-						$c = ($a==$b);<br>
-						$c est un booléen qui vaut TRUE car dans un contexte de comparaison numérique, la chaîne "345" est évaluée comme le nombre 345. Si $b="345
-						éléphants" nous obtenons le même résultat.
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">!= ou <></th>
-						<td>
-						Teste l’inégalité de deux valeurs.<br>
-						L’expression $a != $b vaut TRUE si la valeur de $a est différente de celle de $b et FALSE dans le cas contraire.
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">===</th>
-						<td>
-						Teste l’identité des valeurs et des types de deux expressions.<br>
-						L’expression $a === $b vaut TRUE si la valeur de $a est égale à celle de $b et que $a et $b sont du même type. Elle vaut FALSE dans le cas contraire :<br>
-						$a = 345;<br>
-						$b = "345";<br>
-						$c = ($a===$b);<br>
-						$c est un booléen qui vaut FALSE car si les valeurs sont égales, les types sont différents (integer et string).
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">!==</th>
-						<td>
-						Teste la non-identité de deux expressions.<br>
-						L’expression $a !== $b vaut TRUE si la valeur de $a est différente de celle de $b ou si $a et $b sont d’un type différent. Dans le cas contraire, elle vaut FALSE :<br>
-						$a = 345;<br>
-						$b = "345";<br>
-						$c = ($a!==$b);<br>
-						$c est un booléen qui vaut TRUE car si les valeurs sont égales, les types sont différents (integer et string).
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><</th>
-						<td>
-						Teste si le premier opérande est strictement inférieur au second.
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><=</th>
-						<td>
-						Teste si le premier opérande est inférieur ou égal au second.
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">></th>
-						<td>
-						Teste si le premier opérande est strictement supérieur au second.
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">>=</th>
-						<td>
-						Teste si le premier opérande est supérieur ou égal au second.
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><=></th>
-						<td>
-						Avec $a<=>$b, retourne -1, 0 ou 1 respectivement si $a<$b, $a=$b ou $a>$b ($a et $b peuvent être des chaînes).
-						</td>
-					</tr>
-					</tbody>
-					</table>
-
-                    <h3>Les opérateurs logiques</h3>
-
-				<table class="table table-striped">
-				<thead>
-					<tr>
-					<th scope="col">Opérateurs</th>
-					<th scope="col">Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-                        <th scope="row">OR</th>
-                        <td>Teste si l’un au moins des opérandes a la valeur TRUE :<br>
-                            $a = true;<br>
-                            $b = false;<br>
-                            $c = false;<br>
-                            $d = ($a OR $b);//$d vaut TRUE.<br>
-                            $e = ($b OR $c); //$e vaut FALSE.</td>
-					</tr>
-					<tr>
-                        <th scope="row">||</th>
-                        <td>Équivaut à l’opérateur OR mais n’a pas la même priorité.</td>
-					</tr>
-					<tr>
-                        <th scope="row">XOR</th>
-                        <td>Teste si un et un seul des opérandes a la valeur TRUE :<br>
-                        $a = true;<br>
-                        $b = true;<br>
-                        $c = false;<br>
-                        $d = ($a XOR $b); //$d vaut FALSE.<br>
-                        $e = ($b XOR $c); //$e vaut TRUE.</td>
-					</tr>
-					<tr>
-					<th scope="row">AND</th>
-					    <td>Teste si les deux opérandes valent TRUE en même temps :<br>
-                        $a = true;<br>
-                        $b = true;<br>
-                        $c = false;<br>
-                        $d = ($a AND $b); //$d vaut TRUE.<br>
-                        $e = ($b AND $c); //$e vaut FALSE.</td>
-					</tr>
-					<tr>
-                        <th scope="row">&&</th>
-                        <td>Équivaut à l’opérateur AND mais n’a pas la même priorité.</td>
-					</tr>
-					<tr>
-                        <th scope="row">!</th>
-                        <td>Opérateur unaire de négation, qui inverse la valeur de l’opérande :
-                        $a = TRUE;<br>
-                        $b = FALSE;<br>
-                        $d = !$a; //$d vaut FALSE.<br>
-                        $e = !$b; //$e vaut TRUE.</td>
-					</tr>
-				</tbody>
-				</table>
-                <p>Attention !! Une erreur classique dans l’écriture des expressions conditionnelles consiste à confondre l’opérateur de comparaison == avec l’opérateur d'affectation =. L’usage des parenthèses dans la rédaction des expressions booléennes est souvent indispensable et toujours recommandé pour éviter les problèmes liés à l’ordre d’évaluation des opérateurs.</p>
-
-        </div>
-        <!-- fin col -->
-
-
-      </section>
-      <!-- fin row -->
+                            </td>
+                        </tr>
+                        <!-- reprise cours  -->
+                        <tr>
+                            <th scope="row"><code>$_SESSION</code></th>
+                            <td>Contient l'ensemble des noms des variables de session et leurs valeurs</td>
+                        </tr>
+                    </tbody>
+                </table>
 
 
 
+            </div>
+            <!-- fin col -->
+        </section>
+        <!-- fin row -->
+
+        <section class="row">
+            <div class="col-md-8">
+                <h2>Les opérateurs d'affectation combinés</h2>
+                <p>En plus de l'opérateur classique d'affectation = il en existe plusieurs</p>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="row">Opérateur</th>
+                            <th scope="row">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">+=</th>
+                            <td>
+                            Addition puis affectation :<br>
+                            $x += $y équivaut à $x = $x + $y<br>
+                            $y peut être une expression complexe dont la valeur est un nombre.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">-=</th>
+							<td>Soustraction puis affectation :<br>
+								$x -= $y équivaut à $x = $x - $y<br>
+								$y peut être une expression complexe dont la valeur est un nombre.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">*=</th>
+							<td>Multiplication puis affectation :<br>
+							$x *= $y équivaut à $x = $x * $y<br>
+							$y peut être une expression complexe dont la valeur est un nombre.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">**=</th>
+							<td>Puissance puis affectation<br>
+							$x**=2 équivaut à $x=($x)²</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">/=</th>
+							<td>Division puis affectation :<br>
+							$x /= $y équivaut à $x = $x / $y<br>
+							$y peut être une expression complexe dont la valeur est un nombre différent de 0.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">%=</th>
+							<td>Modulo puis affectation :<br>
+							$x %= $y équivaut à $x = $x % $y $y<br>
+							$y peut être une expression complexe dont la valeur est un nombre.</td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">.=</th>
+							<td>Concaténation puis affectation :<br>
+							$x .= $y équivaut à $x = $x . $y<br>
+							$y peut être une expression littérale dont la valeur est une chaîne de caractères.</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- fin col -->
+        </section>
+        <!-- fin row -->
+
+        <section class="row">
+            <div class="col-md-12">
+                <h2>Les constantes</h2>
+                <p>Vous serez parfois amené à utiliser de manière répétitive des informations devant rester constantes dans toutes les pages d’un même site. Il peut s’agir de texte ou de nombres qui reviennent souvent. Pour ne pas risquer l’écrasement accidentel de ces valeurs, qui pourrait se produire si elles étaient contenues dans des variables, vous avez tout intérêt à les enregistrer sous forme de constantes personnalisées.</p>
+                <p>On peut définir ses constantes soi-même : pour définir des constantes personalisées, utilisez la fonction <code>define()</code> dont la syntaxe est la suivante <code></code> cf. la page suivante <a href="../00-pages/03_page.php" target="_blank">page avec des constantes</a></p>
+            </div>
+            <!-- fin col -->
+
+            <div class="col-md-12">
+                <h2>Les constantes prédéfinies</h2>
+                <p>Il existe dans PHP un grand nombre de constantes prédéfinies, que vous pouvez utiliser dans les fonctions comme paramètres permettant de définir des options. Nous ne pouvons les citer toutes tant elles sont nombreuses, mais nous les définirons au fur et à mesure de nos besoins. Sur cette page la liste des <a href="../00-pages/04_page.php" target="_blank">constantes prédéfinies </a></p>
+                
+                <table class="table table-striped">
+                    <thead>
+                            <tr>
+                                <th scope="col">Constantes</th>
+                                <th scope="col">Résultat</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><code>PHP_VERSION</code></th>
+                            <td>Version de PHP sur ce serveur n ° : <?php echo PHP_VERSION; ?> </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>PHP_OS</code></th>
+                            <td>Système d'exploitation (Operating System) du serveur : <?php echo PHP_OS; ?> </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>DEFAULT_INCLUDE_PATH</code></th>
+                            <td>Chemin d'accès aux fichiers par défaut : <?php echo DEFAULT_INCLUDE_PATH; ?> </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>__FILE__</code></th>
+                            <td>Nom du fichier en cours d'exécution : <?php echo __FILE__; ?> </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><code>__LINE__</code></th>
+                            <td> Numéro de la ligne du fichier : <?php echo __LINE__; ?> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- fin col -->
+        </section>
+        <!-- fin row -->
 
 
-
-
-    </div>
+    </div>  
     <!-- fin container  -->
-
-	
     <!-- footer en require  -->
     <?php require_once '../inc/footer.inc.php'; ?>
-
-    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

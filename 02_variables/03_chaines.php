@@ -1,6 +1,4 @@
-<?php
-require_once '../inc/functions.php'; // APPEL DES FONCTIONS
-?>
+<?php require_once '../inc/functions.php'; // APPEL DES FONCTIONS ?>
 <!doctype html>
 <html lang="fr">
   <head>
@@ -11,23 +9,29 @@ require_once '../inc/functions.php'; // APPEL DES FONCTIONS
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>CoursPHP - 2 les chaînes </title>
+    <title>CoursPHP - Chapitre - 2 les chaînes </title>
+	<!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+	
     <!-- mes styles -->
     <link rel="stylesheet" href="../css/style.css">
 
   </head>
   <body>
-    <header class="container-fluid bg-light">
-      <h1 class="display-4">CoursPHP - 2 les chaînes  de caractères</h1>
+    <header class="container-fluid f-header p-2">
+      <h1 class="display-4 text-center">CoursPHP - Chapitre - 2 les chaînes  de caractères</h1>
       <p class="lead">Les chaînes de caractères sont avec les nombres et les types de données les plus manipulés sur un site web. De surcroît, dans les échanges entre le client et le serveur au moyen de formulaires, toutes les données sont transmises sous forme de chaînes, d’où leur importance.</p>
       <?php 
         $varcoucou = "coucou !";
         echo "<p>$varcoucou on entend le coucou</p>";
+		jeprint_r($varcoucou);
       ?> 
     </header> 
     <!-- fin container-fluid header  -->
 
-    <div class="container bg-white">
+    <div class="container bg-white mt-2 mb-2 m-auto p-2">
 
       <section class="row">
 
