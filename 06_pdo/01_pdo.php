@@ -186,49 +186,52 @@
                 }
                 echo "</ul>";
                 ?>
-                <?php
-                $requete = $pdoENT->query("SELECT * FROM employes ORDER BY sexe DESC ,nom ASC,id_employes ,service,date_embauche,salaire;");
-                $nbr_employes = $requete->rowCount();
-                echo "<h2> il y a  $nbr_employes employés dans l'entreprise </h2> ";
-                // while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
-                //     echo  $ligne['prenom'] . '<br>';
-                //     echo  $ligne['sexe'] . '<br>';
-                // }
-                echo "<table>";
-                while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>
-                    <td> " . $ligne['prenom'] . "</td>
-                    <td>" . $ligne['sexe'] . "</td>
-                    <td>" . $ligne['id_employes'] . "</td>
-                    <td>" . $ligne['service'] . "</td>
-                    <td>" . $ligne['date_embauche'] . "</td>
-                    <td>" . $ligne['salaire'] . "</td>
-                    </tr>";
-                }
-                echo "</table>";
+                echo "<th>Date d'embauche</th>";
+                echo "</tr>";
+                while ( $ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>
+                    <td> n° " .$ligne['id_employes']. "</td>";
 
+                    // if ... else
+                    if( $ligne['sexe'] == 'f') {
+                    echo "<td>Mme ";
+                        } else {
+                        echo "
+                    <td>M. ";
+                        }
 
-                ?>
-                <?php
-                $requete = $pdoENT->query(" SELECT * FROM employes ORDER BY sexe DESC, nom ASC ");
-                $info = $requete->rowCount();
-                echo "<table class=\"table table-hover table-striped\">";
-                echo  "<tr><th scope=\"col\">ID</th><th scope=\"col\">Prénome Nom</th><th scope=\"col\">Sexe</th><th scope=\"col\">Service</th><th scope=\"col\">Date_embauche</th><th scope=\"col\">Salaire</th></tr>";
-                while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
-                    if ($ligne['sexe'] == 'f') {
-                        $gender = "Madame";
-                    } else {
-                        $gender = "Monsieur";
-                    };
-                    echo "<tr><th scope=\"row\">" . $ligne['id_employes'] . "</th><td>" . $ligne['prenom'] . " " . strtoupper($ligne['nom']) . "</td><td>" . $gender . "</td><td>" . $ligne['service'] . "</td><td>" . $ligne['date_embauche'] . "</td><td>" . $ligne['salaire'] . "</td></tr>";
+                        echo $ligne['prenom']. " " .$ligne['nom']. "</td>";
+                    echo "<td>" .$ligne['service']. "</td>";
+                    echo "<td>" .$ligne['salaire']. " € </td>";
+                    echo "<td>" .$ligne['date_embauche']. "</td>
+                </tr>";
                 }
                 echo "</table>";
                 ?>
+                <hr>
+                <table class="table table-striped table-success">
+                    <tr>
+                        <th>Nom, prénom</th>
+                        <th>Service</th>
+                    </tr>
+                    <?php
+                    foreach ($pdoENT->query(" SELECT nom, prenom, sexe, service FROM employes ORDER BY sexe ASC, nom ASC ") as $infos) {
+                        // $infos fabrique un tableau à chaque tour de boucle pour chaque enregistrement, nous pouvons ensuite les parcourir 
+                        // debug($infos);
+                        echo "<tr>";
+                        // if ... else
+                        if ($infos['sexe'] == 'f') {
+                            echo "<td>Mme ";
+                        } else {
+                            echo "<td>M. ";
+                        }
+                        echo $infos['nom'] . " " . $infos['prenom'] . "</td><td>" . $infos['service'] . "</td></tr>";
+                    }
+                    ?>
+                </table>
             </div>
             <!-- fin col -->
         </section>
-        <!-- fin row -->
-
     </div>
     <!-- fin container  -->
 
