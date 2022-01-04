@@ -13,6 +13,14 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>CoursPHP - Chapitre 06 - 01 PDO</title>
+    <style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    </style>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,7 +187,7 @@
                 echo "</ul>";
                 ?>
                 <?php
-                $requete = $pdoENT->query("SELECT * FROM employes ORDER BY sexe DESC ,nom ASC ;");
+                $requete = $pdoENT->query("SELECT * FROM employes ORDER BY sexe DESC ,nom ASC,id_employes ,service,date_embauche,salaire;");
                 $nbr_employes = $requete->rowCount();
                 echo "<h2> il y a  $nbr_employes employés dans l'entreprise </h2> ";
                 // while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
@@ -191,11 +199,30 @@
                     echo "<tr>
                     <td> " . $ligne['prenom'] . "</td>
                     <td>" . $ligne['sexe'] . "</td>
+                    <td>" . $ligne['id_employes'] . "</td>
+                    <td>" . $ligne['service'] . "</td>
+                    <td>" . $ligne['date_embauche'] . "</td>
+                    <td>" . $ligne['salaire'] . "</td>
                     </tr>";
                 }
                 echo "</table>";
 
 
+                ?>
+                <?php
+                $requete = $pdoENT->query(" SELECT * FROM employes ORDER BY sexe DESC, nom ASC ");
+                $info = $requete->rowCount();
+                echo "<table class=\"table table-hover table-striped\">";
+                echo  "<tr><th scope=\"col\">ID</th><th scope=\"col\">Prénome Nom</th><th scope=\"col\">Sexe</th><th scope=\"col\">Service</th><th scope=\"col\">Date_embauche</th><th scope=\"col\">Salaire</th></tr>";
+                while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
+                    if ($ligne['sexe'] == 'f') {
+                        $gender = "Madame";
+                    } else {
+                        $gender = "Monsieur";
+                    };
+                    echo "<tr><th scope=\"row\">" . $ligne['id_employes'] . "</th><td>" . $ligne['prenom'] . " " . strtoupper($ligne['nom']) . "</td><td>" . $gender . "</td><td>" . $ligne['service'] . "</td><td>" . $ligne['date_embauche'] . "</td><td>" . $ligne['salaire'] . "</td></tr>";
+                }
+                echo "</table>";
                 ?>
             </div>
             <!-- fin col -->
