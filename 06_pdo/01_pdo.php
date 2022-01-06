@@ -237,6 +237,38 @@
                     }
                     ?>
                 </table>
+                <?php
+                $resultat = $pdoENT->query("SELECT * FROM employes ORDER BY id_employes");
+                // les lignesn d'en-tête du tableau
+                echo '<table class="table table striped table-dark">';
+                echo '<thead>
+                        <tr>';
+                echo '<th>ID</th>';
+                echo '<th>Nom</th>';
+                echo '<th>Prénom</th>';
+                echo '<th>Sexe</th>';
+                echo '<th>Service</th>';
+                echo '<th>Date d\'entrée</th>';
+                echo '<th>Salaire</th>';
+                echo '</tr>
+                    </thead>';
+                echo '<tbody>';
+
+                // boucle while avec foreach
+                while ($employes = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<tr>';
+
+                    foreach ($employes as $informations) {
+                        echo '<td>' . $informations . '</td>';
+                    }
+
+                    echo '</tr>';
+                }
+
+
+                echo '</tbody>
+                </table>';
+                ?>
             </div>
             <!-- fin col -->
         </section>
