@@ -1,7 +1,9 @@
-<?php require_once '../inc/functions.php'; // APPEL DES FONCTIONS ?>
+<?php require_once '../inc/functions.php'; // APPEL DES FONCTIONS 
+?>
 <!doctype html>
 <html lang="fr">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,54 +20,97 @@
 
     <!-- mes styles -->
     <link rel="stylesheet" href="../css/style.css">
-  </head>
-  <body>  
-  <?php require_once '../inc/nav.inc.php';// NAVBAR ?>
-  <main>
-    <header class="container-fluid f-header p-2">
-      <h1 class="display-4 text-center">CoursPHP - Chapitre 09 - 01 sécurité, dialogue</h1>
-      <p class="lead">SOUS TITRE</p>
-    </header> 
-    <!-- fin container-fluid header  -->
-      <div class="container bg-white mt-2 mb-2 m-auto p-2">
-  
-        <section class="row">
-  
-          <div class="col-md-6">
-            <h2>Création d'une BDD</h2>
-            <ul>
-                <li>Nom de la BDD : dialogue</li>
-                <li>1 table nom de la table : commentaires (vérifier que la table et la BDD sont avec le moteur InnoDB)</li>
-                <li>la table contient les champs suivants : </li>
-                <li>id_commentaires : INT(5) PK AI</li>
-                <li>pseudo : VARCHAR(20)</li>
-                <li>message : TEXT</li>
-                <li>date_enregistrement : DATETIME</li>
-            </ul>
-            <h2></h2>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+</head>
+
+<body>
+    <main>
+        <header class="container-fluid f-header p-2">
+            <h1 class="display-4 text-center">CoursPHP - Chapitre 09 - 01 sécurité, dialogue</h1>
+            <p class="lead"></p>
+        </header>
+        <!-- fin container-fluid header  -->
+        <div class="container bg-white mt-2 mb-2 m-auto p-2">
+
+            <section class="row">
+
+                <div class="col-md-6">
+                    <h2>Création d'une BDD</h2>
+                    <ul>
+                        <li>Nom de la BDD : dialogue</li>
+                        <li>1 table nom de la table : commentaires (vérifier que la table et la BDD sont avec le moteur InnoDB)</li>
+                        <li>la table contient les champs suivants : </li>
+                        <li>id_commentaires : INT(5) PK AI</li>
+                        <li>pseudo : VARCHAR(20)</li>
+                        <li>message : TEXT</li>
+                        <li>date_enregistrement : DATETIME</li>
+                    </ul>
+                    <h2></h2>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <?php
+                //    //connexion à la BDD
+                //    //passage en variables des informations de connexion
+                //    $host = 'localhost'; //le chemin vers le serveur de données, l'hôte, ici un chemin local 'localhost'
+                //    $database = 'entreprise'; //le nom de la BDD
+                //    $user = 'root';
+                //    $psw = '';
+                //    $psw = 'root';
 
 
-          </div>
-          <!-- fin col -->
-  
-          <div class="col-md-6">
-            <h2>TitreNiveau2</h2>
-          </div>
-          <!-- fin col -->
-          </section>
-        <!-- fin row -->  
-      </div>
-      <!-- fin container  -->
+                //connexion à la BDD
+                //nom de la variable de connexion à la BDD ENT = dialogue;
+                //cette variable nous sert partout ou l'on doit se servir de cette connexion
+
+                $pdoENT = new PDO(
+                    // 1 //
+                    'mysql:host=localhost;dbname=dialogue',
+                    // en 1er lieu le nom du driver 'mysql' (on pourrait commr driver IBM, oracle etc.), nom de serveur (host), nom de la BDD (dbname)
+
+                    // 2 //
+
+                    'root', //le pseudo ou l'utilisateur de la BDD
+
+                    // 3 //
+
+                    '', //le mot de passe en local sur pc il est vide avec XAMPP
+
+
+                    //'root',//cette ligne commentée donne la mdp pour MAC avec MAMP
+
+                    // 4 //
+
+                    array(
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, //pour afficher les erreurs SQL dans la navigateur
+                        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', //pour définir le charset des échanges avec la BDD 
+                    )
+                );
+                //$pdoENT est un 'objet' qui représente la connexion à la BDD
+                 debug($pdoENT);
+                 
+                 ?>
+
+
+                </div>
+                <!-- fin col -->
+
+                <div class="col-md-6">
+                    <h2>TitreNiveau2</h2>
+                </div>
+                <!-- fin col -->
+            </section>
+            <!-- fin row -->
+        </div>
+        <!-- fin container  -->
     </main>
-      <?php require_once '../inc/footer.inc.php';// FOOTER ?>
-      <!-- Option 1: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+    <?php require_once '../inc/footer.inc.php'; // FOOTER 
+    ?>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
 </html>
