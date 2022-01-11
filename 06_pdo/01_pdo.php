@@ -61,7 +61,7 @@
                     // en 1er lieu le nom du driver (mysql) (on pourrait comme driver IBM, oracle etc.), nom du serveur (host), nom de la BDD (dbname)
                     'root', // le pseudo ou l'utilisateur de la BDD
                     // '',// le mot de passe en local sur PC il est vide avec XAMPP
-                    'root', // cette ligne commentée donne le mdp pour MAC avec MAMP
+                    '', // cette ligne commentée donne le mdp pour MAC avec MAMP
                     array(
                         PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, // pour afficher les erreurs SQL dans le navigateur
                         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // pour définir le charset des échanges avec la BDD
