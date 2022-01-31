@@ -1,5 +1,3 @@
-
-
 <?php
 
 // connexion la session start une constante
@@ -10,8 +8,8 @@
 $host = 'localhost';// le chemin vers le serveur de données
 $database = 'maboutique';// le nom de la BDD
 $user = 'root';// le nom d'utilisateur pour se connecter
-// $psw = '';// mdp PC XAMPP
-$psw = '';// mdp MAC MAMP
+$psw = '';// mdp PC XAMPP
+// $psw = 'root';// mdp MAC MAMP
 
 $pdoMAB = new PDO('mysql:host='.$host.';dbname='.$database,$user,$psw,
 array(
@@ -25,6 +23,11 @@ array(
 session_start();
 
 //3- CHEMIN DU SITE DANS UNE CONSTANTE
+// ici on définit le chemin absolu dans une constante, on écrira tous les chemins src et href avec cette constante
+// chez l'hébergeur on écrira ce qui suit
+// define('RACINE_SITE', '/');
+define('RACINE_SITE', '/Cours-PHP/10_boitique/');
+
 
 //4- UNE VARIABLE POUR LES MESSAGES ATTENTION ne pas mettre d'espace dans la variable !
 $contenu = '';
