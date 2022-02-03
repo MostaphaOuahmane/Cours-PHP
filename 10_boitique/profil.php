@@ -25,7 +25,7 @@ if (!estConnecte()) { // accès à la page autorisé quand on est connecté
     <title>La boutique - Bienvenue </title>
   </head>
 <body>
-    <header class="container bg-warning p-4 ">
+<header class="container bg-warning p-4 ">
             <h1 class="display-4">Votre profil </h1>
             <p class="lead">Bonjour <?php echo $_SESSION['membre']['prenom']; ?>
             <?php
